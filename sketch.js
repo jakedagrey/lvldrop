@@ -9,7 +9,7 @@ let sendbutton;
 const { rpc } = link
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  background(100);
+  background(200);
   lbutton = createButton('Wax Cloud Login');
     lbutton.position(0, 0);
     lbutton.mousePressed(login)
