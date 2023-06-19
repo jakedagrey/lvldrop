@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.min.js"></script>
+    <script src="https://unpkg.com/anchor-link@3"></script>
+    <script src="https://unpkg.com/anchor-link-browser-transport@3"></script>
+    <script src="waxjs.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8" />
+
+</head>
+  <body>
+    <main>
+    </main>
+      <script>const wax = new waxjs.WaxJS({
+              rpcEndpoint: 'https://wax.eosdac.io'
+});</script>
+      <script>  
+          const identifier = 'example'
+          const transport = new AnchorLinkBrowserTransport()
+          // initialize the link
+          const link = new AnchorLink({
+              transport,
+              chains: [{
+                  chainId: '1064487b3cd1a897ce03ae5b6a865651747e2e152090f99c1d19d44e01aea5a4',
+                  nodeUrl: 'https://wax.eosdac.com',
+              }]
+          })</script>
+    <script src="sketch.js"></script>
+  </body>
+</html>
