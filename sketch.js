@@ -13,9 +13,7 @@ function setup() {
   lbutton = createButton('Wax Cloud Login');
     lbutton.position(0, 0);
     lbutton.mousePressed(login)
-    abutton = createButton('Anchor Login');
-    abutton.position(140, 0);
-    abutton.mousePressed(alogin)
+
     st = createP()
     st.position(10, 100)
     st1 = createP()
@@ -326,7 +324,7 @@ async function draw() {
    
         lbutton.remove();
         abutton.remove();
-        abal()
+        
 
         } else {
         }
