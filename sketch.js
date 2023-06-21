@@ -13,7 +13,9 @@ function setup() {
   lbutton = createButton('Wax Cloud Login');
     lbutton.position(0, 0);
     lbutton.mousePressed(login)
- 
+    abutton = createButton('Anchor Login');
+    abutton.position(140, 0);
+    abutton.mousePressed(alogin)
     st = createP()
     st.position(10, 100)
     st1 = createP()
@@ -49,6 +51,7 @@ async function alogin() {
     link.login(identifier).then((result) => {
         session = result.session
         didLogin()
+       
  
          
         
@@ -65,13 +68,14 @@ function alogout() {
 // called when session was restored or created
 function didLogin() {
     if (session) {
-        async function bal() {
-            await session.client.v1.chain.get_table_rows({ "code": "leefmaincorp", "scope": session.auth.actor, "table": "accounts" }).then((res) => { 
-            alert(res)})
-        }bal()
+        
     }
 }
-
+async function abal() {
+    await session.client.v1.chain.get_table_rows({ "code": "leefmaincorp", "scope": session.auth.actor, "table": "accounts" }).then((res) => {
+        bal = res.rows[0].balance
+    })
+} 
 
 async function xp() {
 
@@ -322,7 +326,7 @@ async function draw() {
    
         lbutton.remove();
         abutton.remove();
-
+        bal()
 
         } else {
         }
