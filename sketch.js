@@ -326,7 +326,7 @@ async function draw() {
    
         lbutton.remove();
         abutton.remove();
-        bal()
+        abal()
 
         } else {
         }
