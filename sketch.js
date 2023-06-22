@@ -16,8 +16,8 @@ let slider
 const { rpc } = link
 
 function setup() {
-    fsize = windowWidth * 0.05
-    fsizeh = windowHeight * 0.05
+    fsize = windowWidth * 0.03
+    fsizeh = windowHeight * 0.02
 	bsizew=windowWidth*0.15
 bsizeh=windowHeight*0.1
   createCanvas(windowWidth, windowHeight);
@@ -31,17 +31,17 @@ bsizeh=windowHeight*0.1
     abutton.size(bsizew,bsizeh)
     abutton.mousePressed(alogin)
     st = createP()
-    st.position(10, windowHeight  - fsizeh*10)
+    st.position(10, windowHeight  - fsizeh*20)
     st1 = createP()
-    st1.position(10, windowHeight  - fsizeh*5)
+    st1.position(10, windowHeight  - fsizeh*10)
     st2 = createP()
-    st2.position(10, windowHeight  - fsizeh)
+    st2.position(10, windowHeight  - fsizeh*5)
     valueDisplayer3 = createP()
-    valueDisplayer3.position(10, windowHeight - 300 - fsizeh)
+    valueDisplayer3.position(10, windowHeight - 300 )
     valueDisplayer2 = createP()
-    valueDisplayer2.position(10, windowHeight - 40 - fsizeh)
+    valueDisplayer2.position(10, windowHeight - 40)
     valueDisplayer = createP()
-    valueDisplayer.position(10, windowHeight - windowHeight + fsizeh+20)
+    valueDisplayer.position(10, windowHeight - windowHeight + fsizeh+100)
     valueDisplayer1 = createP()
     valueDisplayer1.position(10, windowHeight - windowHeight)
 
