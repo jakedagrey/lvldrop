@@ -14,29 +14,44 @@ let aregbutton;
 let asendbutton;
 let slider
 const { rpc } = link
+
 function setup() {
+    fsize = windowWidth * 0.05
+    fsizeh = windowHeight * 0.05
+	bsizew=windowWidth*0.15
+bsizeh=windowHeight*0.1
   createCanvas(windowWidth, windowHeight);
   background(200);
   lbutton = createButton('Wax Cloud Login');
     lbutton.position(0, 0);
+    lbutton.size(bsizew,bsizeh)
     lbutton.mousePressed(login)
     abutton = createButton('Anchor Login');
     abutton.position(140, 0);
+    abutton.size(bsizew,bsizeh)
     abutton.mousePressed(alogin)
     st = createP()
-    st.position(10, 100)
+    st.position(10, windowHeight  - fsizeh*10)
     st1 = createP()
-    st1.position(10, 120)
+    st1.position(10, windowHeight  - fsizeh*5)
     st2 = createP()
-    st2.position(10, 140)
+    st2.position(10, windowHeight  - fsizeh)
     valueDisplayer3 = createP()
-    valueDisplayer3.position(10, 300)
+    valueDisplayer3.position(10, windowHeight - 300 - fsizeh)
     valueDisplayer2 = createP()
-    valueDisplayer2.position(10, 40)
+    valueDisplayer2.position(10, windowHeight - 40 - fsizeh)
     valueDisplayer = createP()
-    valueDisplayer.position(10, 180)
+    valueDisplayer.position(10, windowHeight - windowHeight + fsizeh+20)
     valueDisplayer1 = createP()
-    valueDisplayer1.position(10, 20)
+    valueDisplayer1.position(10, windowHeight - windowHeight)
+
+    valueDisplayer.style('font-size', fsize + 'px')
+    valueDisplayer1.style('font-size', fsize + 'px')
+    valueDisplayer2.style('font-size', fsize + 'px')
+    valueDisplayer3.style('font-size', fsize + 'px')
+    st.style('font-size', fsize + 'px')
+    st1.style('font-size', fsize + 'px')
+    st2.style('font-size', fsize + 'px')
 }
 
 
@@ -88,8 +103,10 @@ async function abal() {
     if (!slider) {
         slider = createSlider(0, Number(bb[0]), 100);
         slider.position(10, 220);
+        slider.style('width', fsize*10 + 'px');
     }
     asendbutton = createButton('Send leef');
+    asendbutton.size(bsizew, bsizeh)
     asendbutton.position(40, 250);
     asendbutton.mousePressed(axp)
     } 
@@ -353,11 +370,11 @@ async function login() {
         
         slider = createSlider(0, Number(bs[0]), 100);
         slider.position(10, 220);
-        slider.style('width', '80px');
+        slider.style('width', fsize*10 + 'px');
         sendbutton = createButton('Send leef');
         sendbutton.position(40, 250);
         sendbutton.mousePressed(xp)
-        
+        sendbutton.size(bsizew, bsizeh)
         leef = await wax.rpc.get_table_rows({ "code": "leefmaincorp", "table": "accounts", "scope": s })
         if (leef.rows.length > 0){
             bal = leef.rows[0].balance
@@ -383,7 +400,8 @@ async function draw() {
      if (stock.rows.length===0){  
 			if (!regbutton){
 			regbutton = createButton('register');
-            regbutton.position(200, 0);
+                regbutton.position(200, 0);
+                regbutton.size(bsizew, bsizeh)
             regbutton.mousePressed(reg)}}
             if (ss.isstaked === 1) {
 				
@@ -411,6 +429,7 @@ async function draw() {
                 if (Number(le[0]) >= Number(n2)) {
                     lvlbutton = createButton('Level Up');
                     lvlbutton.position(200, 250)
+                    lvlbutton.size(bsizew, bsizeh)
                     lvlbutton.mousePressed(lvlup)
                     lvla = 1
                 } else {
@@ -434,7 +453,8 @@ async function draw() {
                 if (ll >= ppl) {
                     pbutton = createButton('Time to Prestige!!!');
                     pbutton.position(200, 400)
-                    plbutton.mousePressed(pup)
+                    pbutton.size(bsizew, bsizeh)
+                    pbutton.mousePressed(pup)
                     pa = 1
                 } else {
                     if (pa === 1) {
@@ -447,11 +467,13 @@ async function draw() {
 
                 regbutton = createButton('register');
                 regbutton.position(200, 0);
+                regbutton.size(bsizew, bsizeh)
                 regbutton.mousePressed(reg)
             }
         } else {
             regbutton = createButton('register');
             regbutton.position(200, 0);
+            regbutton.size(bsizew, bsizeh)
             regbutton.mousePressed(reg)
 }
         lbutton.remove();
@@ -477,14 +499,15 @@ async function draw() {
         if (stock.rows.length===0){  
 			if (!aregbutton){
 			aregbutton = createButton('register');
-            aregbutton.position(200, 0);
+                aregbutton.position(200, 0);
+                aregbutton.size(bsizew, bsizeh)
             aregbutton.mousePressed(areg)}}
         if (ss.isstaked === 1) {
          	if (aregbutton){
 			aregbutton.remove()}
 
             valueDisplayer.html('you are sending ' + slider.value() + ' LEEF to nftsclvldrop')
-
+          
 
             valueDisplayer3.html('Current Leef Bal: ' + bal)
 
@@ -505,6 +528,7 @@ async function draw() {
             if (Number(le[0]) >= Number(n2)) {
                 alvlbutton = createButton('Level Up');
                 alvlbutton.position(200, 250)
+                alvlbutton.size(bsizew, bsizeh)
                 alvlbutton.mousePressed(alvlup)
                 lvla = 1
             } else {
@@ -528,6 +552,7 @@ async function draw() {
             if (ll >= ppl) {
                 apbutton = createButton('Time to Prestige!!!');
                 apbutton.position(200, 400)
+                apbutton.size(bsizew, bsizeh)
                 apbutton.mousePressed(apup)
                 apa = 1
             } else {
@@ -541,6 +566,7 @@ async function draw() {
 
             aregbutton = createButton('register');
             aregbutton.position(200, 0);
+            aregbutton.size(bsizew, bsizeh)
             aregbutton.mousePressed(areg)
         }
     } else {
