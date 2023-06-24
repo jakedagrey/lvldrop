@@ -18,32 +18,33 @@ const { rpc } = link
 function setup() {
     fsize = windowWidth * 0.03
     fsizeh = windowHeight * 0.02
-	bsizew=windowWidth*0.15
-bsizeh=windowHeight*0.1
+	bsizew=windowWidth*0.1
+bsizeh=windowHeight*0.05
   createCanvas(windowWidth, windowHeight);
   background(200);
-  lbutton = createButton('Wax Cloud Login');
+  lbutton = createButton('WCW');
     lbutton.position(0, 0);
     lbutton.size(bsizew,bsizeh)
     lbutton.mousePressed(login)
-    abutton = createButton('Anchor Login');
+    abutton = createButton('Anchor');
     abutton.position(140, 0);
     abutton.size(bsizew,bsizeh)
     abutton.mousePressed(alogin)
     st = createP()
-    st.position(10, windowHeight  - fsizeh*20)
+    st.position(windowWidth*0.5 , 10)
+    
     st1 = createP()
-    st1.position(10, windowHeight  - fsizeh*10)
+    st1.position(10, windowHeight*0.50 )
     st2 = createP()
-    st2.position(10, windowHeight  - fsizeh*5)
+    st2.position(10, windowHeight *0.60 )
     valueDisplayer3 = createP()
-    valueDisplayer3.position(10, windowHeight - 300 )
+    valueDisplayer3.position(10, windowHeight*0.40)
     valueDisplayer2 = createP()
-    valueDisplayer2.position(10, windowHeight - 40)
+    valueDisplayer2.position(10, windowHeight*0.30 )
     valueDisplayer = createP()
-    valueDisplayer.position(10, windowHeight - windowHeight + fsizeh+100)
+    valueDisplayer.position(10, windowHeight*0.20)
     valueDisplayer1 = createP()
-    valueDisplayer1.position(10, windowHeight - windowHeight)
+    valueDisplayer1.position(10, windowHeight*0.01 )
 
     valueDisplayer.style('font-size', fsize + 'px')
     valueDisplayer1.style('font-size', fsize + 'px')
@@ -102,15 +103,15 @@ async function abal() {
     bb=bal.split(" ")
     if (!slider) {
         slider = createSlider(0, Number(bb[0]), 100);
-        slider.position(10, 220);
+        slider.position(10, windowHeight * 0.32);
         slider.style('width', fsize*10 + 'px');
     }
     asendbutton = createButton('Send leef');
     asendbutton.size(bsizew, bsizeh)
-    asendbutton.position(40, 250);
-    asendbutton.mousePressed(axp)
-    } 
+    asendbutton.position(40, windowHeight * 0.35);
+    asendbutton.mousePressed(axp) 
 
+    }
 async function axp() {
 
 
@@ -369,10 +370,10 @@ async function login() {
         }
         
         slider = createSlider(0, Number(bs[0]), 100);
-        slider.position(10, 220);
+        slider.position(10, windowHeight * 0.32);
         slider.style('width', fsize*10 + 'px');
         sendbutton = createButton('Send leef');
-        sendbutton.position(40, 250);
+        sendbutton.position(40, windowHeight * 0.35);
         sendbutton.mousePressed(xp)
         sendbutton.size(bsizew, bsizeh)
         leef = await wax.rpc.get_table_rows({ "code": "leefmaincorp", "table": "accounts", "scope": s })
@@ -428,7 +429,7 @@ async function draw() {
                 le = ss.stock.split(' ')
                 if (Number(le[0]) >= Number(n2)) {
                     lvlbutton = createButton('Level Up');
-                    lvlbutton.position(200, 250)
+                    lvlbutton.position(200, windowHeight * 0.35)
                     lvlbutton.size(bsizew, bsizeh)
                     lvlbutton.mousePressed(lvlup)
                     lvla = 1
@@ -527,7 +528,7 @@ async function draw() {
             le = ss.stock.split(' ')
             if (Number(le[0]) >= Number(n2)) {
                 alvlbutton = createButton('Level Up');
-                alvlbutton.position(200, 250)
+                alvlbutton.position(200, windowHeight * 0.35)
                 alvlbutton.size(bsizew, bsizeh)
                 alvlbutton.mousePressed(alvlup)
                 lvla = 1
