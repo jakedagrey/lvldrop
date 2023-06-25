@@ -536,7 +536,7 @@ async function draw() {
         leefmax = await session.client.v1.chain.get_table_rows({ "code": "leefmaincorp", "table": "accounts", "scope": 'nftsclvldrop' })
         lef = leefmax.rows[0].balance.split(" ")
         leff = lef[0]
-        userb = await wax.rpc.get_table_rows({ "code": "nftsclvldrop", "table": "stocklist", "scope": "nftsclvldrop" })
+        userb = await wax.rpc.get_table_rows({ "code": "nftsclvldrop", "table": "listlist", "scope": "nftsclvldrop","limit":1000 })
         base = leff / (365 * 24 * 60 * 60) / (userb.rows.length * 1000000)
         st4.html( base);
         textSize(20);
