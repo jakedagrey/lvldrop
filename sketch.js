@@ -421,11 +421,11 @@ async function draw() {
         
         fill(100, 102, 153);
         valueDisplayer1.html(s)
-        let url = 'https://wax.eosphere.io/v1/chain/get_table_rows'
+
         stock = await wax.rpc.get_table_rows({ "code": "nftsclvldrop", "table": "stocklist", "scope": "nftsclvldrop", "lower_bound": s, "upper_bound": s })
         userb = await wax.rpc.get_table_rows({ "code": "nftsclvldrop", "table": "lvllist", "scope": "nftsclvldrop","limit":1000})
         base = Number((leff / (365 * 24 * 60 * 60)) / (userb.rows.length * 1000000)).toFixed(8)
-        
+        st4.html(base)
 
         if (stock.rows.length > 0) {
             ss = stock.rows[0]
@@ -537,7 +537,7 @@ async function draw() {
         lef = leefmax.rows[0].balance.split(" ")
         leff = lef[0]
         userb = await session.client.v1.chain.get_table_rows({ "code": "nftsclvldrop", "table": "lvllist", "scope": "nftsclvldrop","limit":1000 })
-        base = leff / (365 * 24 * 60 * 60) / (userb.rows.length * 1000000)
+        base = Number(leff / (365 * 24 * 60 * 60) / (userb.rows.length * 1000000)).toFixed(8)
         st4.html( base);
         textSize(20);
 
