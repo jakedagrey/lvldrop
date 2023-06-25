@@ -13,21 +13,26 @@ let sendbutton;
 let aregbutton;
 let asendbutton;
 let slider
+
 const { rpc } = link
 
 function setup() {
-    fsize = windowWidth * 0.03
+    fsize = windowWidth * 0.02
     fsizeh = windowHeight * 0.02
 	bsizew=windowWidth*0.1
 bsizeh=windowHeight*0.05
   createCanvas(windowWidth, windowHeight);
-  background(200);
+  background(100);
   lbutton = createButton('WCW');
-    lbutton.position(0, 0);
-    lbutton.size(bsizew,bsizeh)
+    lbutton.position(windowWidth * 0.4, windowHeight*0.5);
+    lbutton.size(bsizew, bsizeh)
+    lbutton.style('background-color', '#ddaa00')
+    lbutton.style('color', '#ffffee')
     lbutton.mousePressed(login)
     abutton = createButton('Anchor');
-    abutton.position(140, 0);
+    abutton.style('background-color', '#0044aa')
+    abutton.style('color', '#eeffff')
+    abutton.position(windowWidth * 0.6, windowHeight*0.5);
     abutton.size(bsizew,bsizeh)
     abutton.mousePressed(alogin)
     st = createP()
@@ -36,7 +41,9 @@ bsizeh=windowHeight*0.05
     st1 = createP()
     st1.position(10, windowHeight*0.50 )
     st2 = createP()
-    st2.position(10, windowHeight *0.60 )
+    st2.position(10, windowHeight * 0.60)
+    st3 = createP()
+    st3.position(windowWidth * 0.90, windowHeight * 0.90)
     valueDisplayer3 = createP()
     valueDisplayer3.position(10, windowHeight*0.40)
     valueDisplayer2 = createP()
@@ -53,6 +60,16 @@ bsizeh=windowHeight*0.05
     st.style('font-size', fsize + 'px')
     st1.style('font-size', fsize + 'px')
     st2.style('font-size', fsize + 'px')
+    st3.style('font-size', fsize + 'px')
+    valueDisplayer.style('color', '#eeffff')
+    valueDisplayer1.style('color', '#eeffff')
+    valueDisplayer2.style('color', '#eeffff')
+    valueDisplayer3.style('color', '#eeffff')
+    st.style('color', '#eeffff')
+    st1.style('color', '#eeffff')
+    st2.style('color', '#eeffff')
+    st3.style('color', '#eeffff')
+
 }
 
 
@@ -417,7 +434,18 @@ async function draw() {
 
 
                 lvl = await wax.rpc.get_table_rows({ "code": "nftsclvldrop", "table": "lvllist", "scope": "nftsclvldrop", "lower_bound": s, "upper_bound": s })
+                utime = await wax.rpc.get_table_rows({ "code": "nftsclvldrop", "table": "timelist", "scope": "nftsclvldrop", "lower_bound": s, "upper_bound": s })
+
                 ll = lvl.rows[0].lvl
+                utimer = 10 * ll
+                dd = new Date();
+                t = Number(dd.getTime() / 1000).toFixed(0);
+                ll = lvl.rows[0].lvl
+                utimer = 10 * ll
+                tim = Number((utime.rows[0].time + utimer) - t).toFixed(0)
+                if (tim < 0) { tim = 0.00 }
+
+                st3.html('timer: ' + tim+" secs");
                 n = 0
                 n1 = 0.0001
                 for (i = 0; i < ll; i++) {
@@ -439,7 +467,13 @@ async function draw() {
                         lvla = 0
                     }
                 }
+                xp = Number(le[0]) / Number(n2)
+                if (xp > 1) { xp = 1 }
                 st.html('Current stock: ' + ss.stock + '/' + Number(n2).toFixed(4) + " LEEF");
+                rect(windowWidth * 0.50, windowHeight * 0.1, windowWidth * 0.45, windowHeight * 0.05,50,50,.5,0)
+                fill(255)
+                rect(windowWidth * 0.50, windowHeight * 0.1, windowWidth * 0.45*xp, windowHeight * 0.05, 50, 50, .5, 0)
+
                 st1.html('Current lvl: ' + ll);
                 p = await wax.rpc.get_table_rows({ "code": "nftsclvldrop", "table": "prestigelist", "scope": "nftsclvldrop", "lower_bound": s, "upper_bound": s })
                 ppl = 60
@@ -516,7 +550,16 @@ async function draw() {
 
 
             lvl = await session.client.v1.chain.get_table_rows({ "code": "nftsclvldrop", "table": "lvllist", "scope": "nftsclvldrop", "lower_bound": session.auth.actor, "upper_bound": session.auth.actor })
+            utime = await wax.rpc.get_table_rows({ "code": "nftsclvldrop", "table": "timelist", "scope": "nftsclvldrop", "lower_bound": session.auth.actor, "upper_bound": session.auth.actor })
+            dd = new Date();
+            t = Number(dd.getTime()/1000).toFixed(0);
             ll = lvl.rows[0].lvl
+            utimer = 10 * ll
+            tim = Number((utime.rows[0].time + utimer) - t).toFixed()
+            if (tim < 0) { tim = 0.00 }
+
+
+            st3.html('timer: ' + tim + " secs");
             n = 0
             n1 = 0.0001
             for (i = 0; i < ll; i++) {
@@ -538,8 +581,16 @@ async function draw() {
                     lvla = 0
                 }
             }
+            xp = Number(le[0]) / Number(n2)
+            if (xp > 1) { xp=1}
             st.html('Current stock: ' + ss.stock + '/' + Number(n2).toFixed(4) + " LEEF");
             st1.html('Current lvl: ' + ll);
+            rect(windowWidth * 0.50, windowHeight * 0.1, windowWidth * 0.45, windowHeight * 0.05, 50, 50, .5, 0)
+            fill(255)
+            rect(windowWidth * 0.50, windowHeight * 0.1, windowWidth * 0.45 * xp, windowHeight * 0.05, 50, 50, .5, 0)
+
+ 
+            
             p = await session.client.v1.chain.get_table_rows({ "code": "nftsclvldrop", "table": "prestigelist", "scope": "nftsclvldrop", "lower_bound": session.auth.actor, "upper_bound": session.auth.actor })
             ppl = 60
             if (p.rows.length > 0) {
