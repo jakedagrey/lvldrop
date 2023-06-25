@@ -437,11 +437,11 @@ async function draw() {
                 utime = await wax.rpc.get_table_rows({ "code": "nftsclvldrop", "table": "timelist", "scope": "nftsclvldrop", "lower_bound": s, "upper_bound": s })
 
                 ll = lvl.rows[0].lvl
-                utimer = 10 * ll
+                utimer = 10 * (ll-1)
                 dd = new Date();
                 t = Number(dd.getTime() / 1000).toFixed(0);
                 ll = lvl.rows[0].lvl
-                utimer = 10 * ll
+                utimer = 10 * (ll-1)
                 tim = Number((utime.rows[0].time + utimer) - t).toFixed(0)
                 if (tim < 0) { tim = 0.00 }
 
@@ -556,7 +556,7 @@ async function draw() {
             dd = new Date();
             t = Number(dd.getTime()/1000).toFixed(0);
             ll = lvl.rows[0].lvl
-            utimer = 10 * ll
+            utimer = 10 * (ll-1)
             tim = Number((utime.rows[0].time + utimer) - t).toFixed()
             if (tim < 0) { tim = 0.00 }
 
