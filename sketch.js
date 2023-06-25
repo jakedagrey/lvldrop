@@ -23,7 +23,7 @@ function setup() {
 bsizeh=windowHeight*0.05
   createCanvas(windowWidth, windowHeight);
   background(100);
-  lbutton = createButton('WCW');
+  lbutton = createButton('Cloud');
     lbutton.position(windowWidth * 0.4, windowHeight*0.5);
     lbutton.size(bsizew, bsizeh)
     lbutton.style('background-color', '#ddaa00')
@@ -44,7 +44,11 @@ bsizeh=windowHeight*0.05
     st2.position(10, windowHeight * 0.60)
     st3 = createP()
     st3.position(windowWidth * 0.90, windowHeight * 0.90)
+    st4 = createP()
+    st4.position(windowWidth * 0.10, windowHeight * 0.90)
     valueDisplayer3 = createP()
+    valueDisplayer3.position(10, windowHeight * 0.40)
+        valueDisplayer3 = createP()
     valueDisplayer3.position(10, windowHeight*0.40)
     valueDisplayer2 = createP()
     valueDisplayer2.position(10, windowHeight*0.30 )
@@ -61,6 +65,7 @@ bsizeh=windowHeight*0.05
     st1.style('font-size', fsize + 'px')
     st2.style('font-size', fsize + 'px')
     st3.style('font-size', fsize + 'px')
+    st4.style('font-size', fsize + 'px')
     valueDisplayer.style('color', '#eeffff')
     valueDisplayer1.style('color', '#eeffff')
     valueDisplayer2.style('color', '#eeffff')
@@ -69,6 +74,7 @@ bsizeh=windowHeight*0.05
     st1.style('color', '#eeffff')
     st2.style('color', '#eeffff')
     st3.style('color', '#eeffff')
+    st4.style('color', '#eeffff')
 
 }
 
@@ -406,12 +412,21 @@ async function login() {
 
 async function draw() {
     if (wax.api) {
+        leefmax = await wax.rpc.get_table_rows({ "code": "leefmaincorp", "table": "accounts", "scope": 'nftsclvldrop' })
+        lef = leefmax.rows[0].balance.split(" ")
+        leff = lef[0]
+        
+
         textSize(20);
         
         fill(100, 102, 153);
         valueDisplayer1.html(s)
         let url = 'https://wax.eosphere.io/v1/chain/get_table_rows'
         stock = await wax.rpc.get_table_rows({ "code": "nftsclvldrop", "table": "stocklist", "scope": "nftsclvldrop", "lower_bound": s, "upper_bound": s })
+        userb = await wax.rpc.get_table_rows({ "code": "nftsclvldrop", "table": "lvllist", "scope": "nftsclvldrop","limit":1000})
+        base = Number((leff / (365 * 24 * 60 * 60)) / (userb.rows.length * 1000000)).toFixed(8)
+        
+
         if (stock.rows.length > 0) {
             ss = stock.rows[0]
 
@@ -441,7 +456,8 @@ async function draw() {
                 dd = new Date();
                 t = Number(dd.getTime() / 1000).toFixed(0);
                 ll = lvl.rows[0].lvl
-                utimer = 10 * (ll-1)
+                utimer = 10 * (ll - 1)
+                uo = base * (ll ** (ll / 10))
                 tim = Number((utime.rows[0].time + utimer) - t).toFixed(0)
                 if (tim < 0) { tim = 0.00 }
 
@@ -517,7 +533,12 @@ async function draw() {
         abutton.remove();
     }
     if (session) {
-        
+        leefmax = await session.client.v1.chain.get_table_rows({ "code": "leefmaincorp", "table": "accounts", "scope": 'nftsclvldrop' })
+        lef = leefmax.rows[0].balance.split(" ")
+        leff = lef[0]
+        userb = await wax.rpc.get_table_rows({ "code": "nftsclvldrop", "table": "stocklist", "scope": "nftsclvldrop" })
+        base = leff / (365 * 24 * 60 * 60) / (userb.rows.length * 1000000)
+        st4.html( base);
         textSize(20);
 
         fill(100, 102, 153);
