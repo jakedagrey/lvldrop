@@ -470,7 +470,9 @@ async function draw() {
                 xp = Number(le[0]) / Number(n2)
                 if (xp > 1) { xp = 1 }
                 st.html('Current stock: ' + ss.stock + '/' + Number(n2).toFixed(4) + " LEEF");
-                rect(windowWidth * 0.50, windowHeight * 0.1, windowWidth * 0.45, windowHeight * 0.05,50,50,.5,0)
+                noFill()
+                rect(windowWidth * 0.50, windowHeight * 0.1, windowWidth * 0.45, windowHeight * 0.05, 50, 50, .5, 0)
+
                 fill(255)
                 rect(windowWidth * 0.50, windowHeight * 0.1, windowWidth * 0.45*xp, windowHeight * 0.05, 50, 50, .5, 0)
 
@@ -585,6 +587,7 @@ async function draw() {
             if (xp > 1) { xp=1}
             st.html('Current stock: ' + ss.stock + '/' + Number(n2).toFixed(4) + " LEEF");
             st1.html('Current lvl: ' + ll);
+            noFill()
             rect(windowWidth * 0.50, windowHeight * 0.1, windowWidth * 0.45, windowHeight * 0.05, 50, 50, .5, 0)
             fill(255)
             rect(windowWidth * 0.50, windowHeight * 0.1, windowWidth * 0.45 * xp, windowHeight * 0.05, 50, 50, .5, 0)
