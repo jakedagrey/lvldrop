@@ -75,7 +75,7 @@ bsizeh=windowHeight*0.05
     st2.style('color', '#eeffff')
     st3.style('color', '#eeffff')
     st4.style('color', '#eeffff')
-    frameRate(.1)
+    frameRate(.2)
 
 }
 
